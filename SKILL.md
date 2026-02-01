@@ -12,6 +12,7 @@ Perform thorough, professional code reviews for TypeScript code with focus on ty
 When reviewing TypeScript code, follow this structured approach:
 
 ### 1. Initial Assessment
+
 - Understand the code's purpose and context
 - Identify the scope (single file, module, feature, or entire codebase)
 - Note the TypeScript version and configuration (check `tsconfig.json`)
@@ -20,17 +21,19 @@ When reviewing TypeScript code, follow this structured approach:
 ### 2. Core Review Categories
 
 #### Type Safety
+
 - **Strict mode compliance**: Verify `strict: true` in tsconfig.json and adherence
 - **Type annotations**: Check for proper type annotations, avoid implicit `any`
 - **Type narrowing**: Ensure proper use of type guards and narrowing
 - **Generic types**: Review generic usage for flexibility without sacrificing safety
 - **Union and intersection types**: Verify correct usage and handling
-- **Type assertions**: Flag unnecessary or dangerous type assertions (`as`, `!`)
-- **Null/undefined handling**: Check for proper optional chaining (`?.`) and nullish coalescing (`??`)
+- **Type assertions**: Flag unnecessary or dangerous type assertions (as keyword, non-null assertion)
+- **Null/undefined handling**: Check for proper optional chaining and nullish coalescing operators
 - **Return types**: Ensure all functions have explicit return types
 - **Discriminated unions**: Verify proper exhaustiveness checking
 
 #### Code Quality & Best Practices
+
 - **Naming conventions**: Check for clear, descriptive names (camelCase for variables/functions, PascalCase for types/classes)
 - **Function length**: Flag functions longer than ~50 lines or with high complexity
 - **Single responsibility**: Ensure functions and classes have one clear purpose
@@ -42,8 +45,9 @@ When reviewing TypeScript code, follow this structured approach:
 - **Enums vs unions**: Recommend const enums or union types over regular enums when appropriate
 
 #### Modern TypeScript Features
-- **Optional chaining**: Suggest using `?.` for nested property access
-- **Nullish coalescing**: Recommend `??` over `||` for default values
+
+- **Optional chaining**: Suggest using optional chaining operator for nested property access
+- **Nullish coalescing**: Recommend nullish coalescing over logical OR for default values
 - **Template literal types**: Check for opportunities to use template literals
 - **Utility types**: Suggest `Partial`, `Pick`, `Omit`, `Record`, etc. where appropriate
 - **Const assertions**: Recommend `as const` for literal types
@@ -51,6 +55,7 @@ When reviewing TypeScript code, follow this structured approach:
 - **`satisfies` operator**: Use instead of type assertions when validating types
 
 #### Performance
+
 - **Unnecessary re-renders**: In React/frameworks, check for memo usage, dependency arrays
 - **Large bundle imports**: Flag entire library imports when tree-shaking is possible
 - **Inefficient algorithms**: Identify O(n²) or worse when better options exist
@@ -59,6 +64,7 @@ When reviewing TypeScript code, follow this structured approach:
 - **Type calculation cost**: Flag extremely complex type calculations that slow compilation
 
 #### Security
+
 - **Input validation**: Ensure user input is validated and sanitized
 - **XSS vulnerabilities**: Check for unsafe HTML rendering or `eval` usage
 - **Sensitive data**: Flag hardcoded secrets, tokens, or passwords
@@ -66,6 +72,7 @@ When reviewing TypeScript code, follow this structured approach:
 - **Type safety as security**: Ensure types prevent security issues (e.g., SQL injection through tagged templates)
 
 #### Testing & Maintainability
+
 - **Test coverage**: Note missing tests for critical paths
 - **Type-only imports**: Use `import type` for type-only imports
 - **Circular dependencies**: Flag circular imports
@@ -77,31 +84,40 @@ When reviewing TypeScript code, follow this structured approach:
 
 Organize the review with clear sections:
 
-```markdown
+````markdown
 ## Summary
+
 [High-level overview: overall code quality, main concerns, highlights]
 
 ## Critical Issues 🔴
+
 [Issues that must be fixed: type errors, security vulnerabilities, breaking bugs]
 
 ## Important Improvements 🟡
+
 [Significant issues affecting maintainability, performance, or best practices]
 
 ## Suggestions 🔵
+
 [Nice-to-have improvements, style preferences, optimizations]
 
 ## Positive Observations ✅
+
 [What the code does well, good patterns to reinforce]
 
 ## Detailed Findings
 
 ### [Category 1: e.g., Type Safety]
+
 **File**: `path/to/file.ts:line_number`
+
 - **Issue**: [Description]
 - **Current code**:
   ```typescript
   [code snippet]
   ```
+````
+
 - **Recommended**:
   ```typescript
   [improved code]
@@ -109,7 +125,8 @@ Organize the review with clear sections:
 - **Reasoning**: [Why this matters]
 
 [Repeat for each finding]
-```
+
+````
 
 ### 4. Code Review Guidelines
 
@@ -163,11 +180,12 @@ When reviewing `tsconfig.json`, check for:
     "noUnusedParameters": true
   }
 }
-```
+````
 
 ### 7. Framework-Specific Considerations
 
 **React + TypeScript**:
+
 - Component prop types with interfaces
 - Proper typing for hooks (`useState`, `useEffect`, `useCallback`, etc.)
 - Event handler types (e.g., `React.MouseEvent<HTMLButtonElement>`)
@@ -175,12 +193,14 @@ When reviewing `tsconfig.json`, check for:
 - Children typing (`React.ReactNode` vs `React.ReactElement`)
 
 **Node.js + TypeScript**:
+
 - Proper types for Express/Fastify handlers
 - Async error handling in middleware
 - Environment variable typing
 - Database query result typing
 
 **Testing**:
+
 - Type-safe mocks and stubs
 - Proper typing for test utilities (Jest, Vitest, etc.)
 - Type assertions in tests
@@ -188,6 +208,7 @@ When reviewing `tsconfig.json`, check for:
 ### 8. Automated Checks to Recommend
 
 Suggest running these tools if not already in use:
+
 - **TypeScript compiler**: `tsc --noEmit` for type checking
 - **ESLint**: With `@typescript-eslint/parser` and recommended rules
 - **Prettier**: For consistent formatting
@@ -210,6 +231,7 @@ Suggest running these tools if not already in use:
 **User**: "Review this TypeScript file for issues"
 
 **Response Flow**:
+
 1. Read the file(s) provided
 2. Check for any `tsconfig.json` in the project
 3. Perform systematic review across all categories
@@ -230,6 +252,7 @@ Suggest running these tools if not already in use:
 ## When to Use This Skill
 
 Activate this skill when the user:
+
 - Explicitly asks for a code review of TypeScript code
 - Requests feedback on TypeScript implementation
 - Asks to check code for issues, bugs, or improvements
